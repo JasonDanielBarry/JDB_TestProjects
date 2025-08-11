@@ -27,10 +27,8 @@ object MainForm: TMainForm
         Width = 1707
         Height = 781
         Align = alClient
-        ExplicitLeft = 208
-        ExplicitTop = 208
-        ExplicitWidth = 105
-        ExplicitHeight = 105
+        OnPaint = PaintBoxD2D_LTPaint
+        ExplicitTop = 3
       end
     end
   end

@@ -2,7 +2,7 @@ program TestGenericDrawingCanvas;
 
 uses
   Vcl.Forms,
-  TestGenericDrawingCanvasMainForm in 'TestGenericDrawingCanvasMainForm.pas' {MainForm};
+  TestGenericDrawingCanvasMainForm in 'Source\TestGenericDrawingCanvasMainForm.pas' {MainForm};
 
 {$R *.res}
 
