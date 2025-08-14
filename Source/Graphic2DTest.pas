@@ -9,8 +9,8 @@ uses
 
   GeometryTypes,
   GeomLineClass, GeomPolyLineClass, GeomPolygonClass,
-  Direct2DLTEntityCanvasClass,
-  Direct2DXYEntityCanvasClass,
+  GenericLTEntityCanvasClass,
+  GenericXYEntityCanvasClass,
   GraphicEntityTypes,
   GraphicArrowClass,
   Graphic2DListClass,
@@ -29,7 +29,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure JDBGraphic2D1PostGraphicDraw(const AWidth, AHeight: Integer; const AD2DCanvas: TDirect2DLTEntityCanvas);
+    procedure JDBGraphic2D1PostGraphicDraw(const AWidth, AHeight: Integer; const ACanvas: TGenericLTEntityCanvas);
   private
     var
         graphicIndex : integer;
@@ -573,7 +573,7 @@ implementation
             JDBGraphic2D1.zoomAll();
         end;
 
-    procedure TForm1.JDBGraphic2D1PostGraphicDraw(const AWidth, AHeight: Integer; const AD2DCanvas: TDirect2DLTEntityCanvas);
+    procedure TForm1.JDBGraphic2D1PostGraphicDraw(const AWidth, AHeight: Integer; const ACanvas: TGenericLTEntityCanvas);
         var
             drawingHeading : string;
         begin
@@ -584,43 +584,35 @@ implementation
                     begin
                         drawingHeading := 'Graph Y vs X';
 
-                        AD2DCanvas.setPenLineProperties( 2, clBlack );
-                        AD2DCanvas.setBrushFillProperties( True, AD2DCanvas.BackgroundColour );
+                        ACanvas.setPenLineProperties( 2, clBlack );
+                        ACanvas.setBrushFillProperties( True, ACanvas.BackgroundColour );
 
-                        AD2DCanvas.drawLTRectangleF( True, True, 175, 75, 0, 0, PointF(AWidth - 5, 75), THorzRectAlign.Right, TVertRectAlign.Top );
+                        ACanvas.drawLTRectangleF( True, True, 175, 75, 0, 0, PointF(AWidth - 5, 75), THorzRectAlign.Right, TVertRectAlign.Top );
 
-                        var arrPoints : TArray<TPointF>;
-
-                        SetLength( arrPoints, 2 );
+                        var startPoint, endPoint : TPointF;
 
                         //legend
-                            AD2DCanvas.setFontTextProperties( 11, clWindowText, [TFontStyle.fsUnderline] );
-
-                            AD2DCanvas.printLTTextF( 'Legend', PointF(AWidth - 175, 75+12.5), False, THorzRectAlign.Left, TVertRectAlign.Center );
-
-                            AD2DCanvas.Font.Style := [];
+                            ACanvas.printLTTextF( 11, 'Legend', PointF(AWidth - 175, 75+12.5), False, clWindowText, [fsUnderline], THorzRectAlign.Left, TVertRectAlign.Center );
 
                         //x^2
-                            arrPoints[0] := PointF(AWidth - 100, 75 + 3*12.5);
-                            arrPoints[1] := PointF(AWidth -  25, 75 + 3*12.5);
+                            startPoint  := PointF(AWidth - 100, 75 + 3*12.5);
+                            endPoint    := PointF(AWidth -  25, 75 + 3*12.5);
 
-                            AD2DCanvas.setPenLineProperties( 3, TColors.Blueviolet );
+                            ACanvas.setPenLineProperties( 3, TColors.Blueviolet );
 
-                            AD2DCanvas.drawLTLineF( arrPoints );
+                            ACanvas.drawLTLineF( startPoint, endPoint );
 
-                            AD2DCanvas.printLTTextF( 'x'#178, PointF(AWidth - 175, 75+3*12.5), False, THorzRectAlign.Left, TVertRectAlign.Center );
+                            ACanvas.printLTTextF( 11, 'x'#178, PointF(AWidth - 175, 75+3*12.5), False, clWindowText, [], THorzRectAlign.Left, TVertRectAlign.Center );
 
                         //trig curve
-                            arrPoints[0] := PointF(AWidth - 100, 75 + 5*12.5);
-                            arrPoints[1] := PointF(AWidth -  25, 75 + 5*12.5);
+                            startPoint  := PointF(AWidth - 100, 75 + 5*12.5);
+                            endPoint    := PointF(AWidth -  25, 75 + 5*12.5);
 
-                            AD2DCanvas.setPenLineProperties( 3, TColors.Green,TPenStyle.psDash );
+                            ACanvas.setPenLineProperties( 3, TColors.Green,TPenStyle.psDash );
 
-                            AD2DCanvas.drawLTLineF( arrPoints );
+                            ACanvas.drawLTLineF( startPoint, endPoint );
 
-                            AD2DCanvas.Font.Size := 11;
-
-                            AD2DCanvas.printLTTextF( 'sin(x) + x'#178, PointF(AWidth - 175, 75+5*12.5), False, THorzRectAlign.Left, TVertRectAlign.Center );
+                            ACanvas.printLTTextF( 11, 'sin(x) + x'#178, PointF(AWidth - 175, 75+5*12.5), False, clWindowText, [], THorzRectAlign.Left, TVertRectAlign.Center );
                     end;
                 2:
                     drawingHeading := 'Fin Plate Diagram';
@@ -630,8 +622,7 @@ implementation
                     drawingHeading := 'Bending Beam Section';
             end;
 
-            AD2DCanvas.setFontTextProperties( 11, clBlack, [TFontStyle.fsBold, TFontStyle.fsUnderline] );
-            AD2DCanvas.printLTTextF( drawingHeading, PointF(5, 5), True );
+            ACanvas.printLTTextF( 11, drawingHeading, PointF(5, 5), True, clWindowText, [fsBold, fsUnderline] );
         end;
 
     procedure TForm1.JDBGraphic2D1UpdateGraphics(   ASender             : TObject;
