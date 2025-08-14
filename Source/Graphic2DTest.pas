@@ -101,7 +101,7 @@ implementation
 
                     polyline := TGeomPolyLine.create();
 
-                    const NUM_POINTS : integer = 3000;
+                    const NUM_POINTS : integer = 4500;
 
                     for i := 0 to NUM_POINTS do
                         begin
@@ -278,9 +278,9 @@ implementation
                         begin
                             y := ( 250 / power(500, 2) ) * power(x, 2);
 
-                            polyLine.addVertex(x, y);
+                            polyLine.addVertex( x, y, 0, False );
 
-                            x := x + 0.5;
+                            x := x + 0.1;
                         end;
 
                     graphicsListInOut.addPolyline(polyLine, 3, TColors.Blueviolet);
@@ -300,9 +300,9 @@ implementation
                         begin
                             y := ( 250 / power(500, 2) ) * power(x, 2) + 15 * sin(x / 5);
 
-                            polyLine.addVertex(x, y);
+                            polyLine.addVertex( x, y, 0, False );
 
-                            x := x + 0.2;
+                            x := x + 0.1;
                         end;
 
                     graphicsListInOut.addPolyline(polyLine, 3, TColors.Green, TPenStyle.psDash);
