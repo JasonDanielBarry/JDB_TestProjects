@@ -66,7 +66,7 @@ object Form1: TForm1
       Text = 'ComboBox1'
       OnChange = ComboBox1Change
       Items.Strings = (
-        'Blue Box'
+        'All Graphic Entities'
         'XY Graphs'
         'Fin Plate'
         'Soil Nail Wall'
