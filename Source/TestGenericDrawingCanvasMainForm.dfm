@@ -18,7 +18,7 @@ object MainForm: TMainForm
     Top = 0
     Width = 1715
     Height = 811
-    ActivePage = TabSheetGenericXYDrawing
+    ActivePage = TabSheetGenericLTDrawing
     Align = alClient
     TabOrder = 0
     object TabSheetGenericLTDrawing: TTabSheet
@@ -45,10 +45,6 @@ object MainForm: TMainForm
         TabOrder = 0
         OnPaint = EsPaintBox_XYPaint
         IsCachedBuffer = True
-        ExplicitLeft = 472
-        ExplicitTop = 392
-        ExplicitWidth = 105
-        ExplicitHeight = 105
       end
     end
   end

@@ -10,6 +10,7 @@ uses
 
     GeometryTypes, GeomBox,
     DrawingAxisConversionClass,
+    CanvasHelperClass,
     GenericLTEntityCanvasClass,
     GenericXYEntityCanvasClass,
     Direct2DXYEntityCanvasClass
@@ -198,15 +199,33 @@ implementation
 
         procedure TMainForm.PaintBox_LTPaint(Sender: TObject);
             begin
-                renderBitmap.SetSize( PaintBox_LT.Width, PaintBox_LT.Height );
+//                renderBitmap.SetSize( PaintBox_LT.Width, PaintBox_LT.Height );
+//
+//                D2DCanvas.beginDrawing( renderBitmap );
+//
+//                drawLTGraphic( D2DCanvas );
+//
+//                D2DCanvas.endDrawing();
+//
+//                PaintBox_LT.Canvas.Draw( 0, 0, renderBitmap );
 
-                D2DCanvas.beginDrawing( renderBitmap );
+                PaintBox_LT.Canvas.setBrushFillProperties( true, clRed );
+                PaintBox_LT.Canvas.setPenLineProperties( 5, clBlack, TPenStyle.psDashDotDot );
+                PaintBox_LT.Canvas.setFontTextProperties( 15, 'Segoe UI', clBlue, [TFontStyle.fsBold, TFontStyle.fsUnderline] );
 
-                drawLTGraphic( D2DCanvas );
+                PaintBox_LT.Canvas.pen.Style := TPenStyle.psDot;
 
-                D2DCanvas.endDrawing();
+                PaintBox_LT.Canvas.drawLTArcF( True, True, 0, -45, 150, 100, PointF( 200, 200 ) );
 
-                PaintBox_LT.Canvas.Draw( 0, 0, renderBitmap );
+                PaintBox_LT.Canvas.drawLTEllipseF( True, True, 200, 300, PointF( 400, 400 ) );
+
+                PaintBox_LT.Canvas.Polyline( [ Point(0, 0), point( 75, 50 ), point(100, 25), point(150, 50) ] );
+
+                PaintBox_LT.Canvas.drawLTPolygonF( True, True, [ Point(600, 600), point( 550, 500 ), point(500, 600), point(550, 700) ] );
+
+                PaintBox_LT.Canvas.drawLTRectangleF( True, True, 700, 800, 100, 300, 35, 35 );
+
+                PaintBox_LT.Canvas.printLTTextF( 'Hello World!', pointf( 300, 150 ) );
             end;
 
     //XY Drawing----------------------------------------------------------------------------
