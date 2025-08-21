@@ -218,25 +218,6 @@ implementation
                 D2DCanvas.endDrawing();
 
                 PaintBox_LT.Canvas.Draw( 0, 0, renderBitmap );
-
-//                PaintBox_LT.Canvas.setBrushFillProperties( true, clRed );
-//                PaintBox_LT.Canvas.setPenLineProperties( 5, clBlack, TPenStyle.psSolid );
-//                PaintBox_LT.Canvas.setFontTextProperties( 15, 'Segoe UI', clBlue, [TFontStyle.fsBold, TFontStyle.fsUnderline] );
-//                PaintBox_LT.Canvas.rotateCanvasLT( 5, PointF( 0, 0) );
-//
-//                PaintBox_LT.Canvas.pen.Style := TPenStyle.psDot;
-//
-//                PaintBox_LT.Canvas.drawLTArcF( True, True, 0, -45, 150, 100, PointF( 200, 200 ) );
-//
-//                PaintBox_LT.Canvas.drawLTEllipseF( True, True, 200, 300, PointF( 400, 400 ) );
-//
-//                PaintBox_LT.Canvas.Polyline( [ Point(0, 0), point( 75, 50 ), point(100, 25), point(150, 50) ] );
-//
-//                PaintBox_LT.Canvas.drawLTPolygonF( True, True, [ Point(600, 600), point( 550, 500 ), point(500, 600), point(550, 700) ] );
-//
-//                PaintBox_LT.Canvas.drawLTRectangleF( True, True, 700, 800, 100, 300, 35, 35 );
-//
-//                PaintBox_LT.Canvas.printLTTextF( 'Hello World!', pointf( 300, 150 ) );
             end;
 
     //XY Drawing----------------------------------------------------------------------------
@@ -436,8 +417,6 @@ implementation
 
                 drawLTGraphic( metafileCanvas );
 
-                metafileCanvas.endDrawing();
-
                 metafileCanvas.saveToFile('../MetafileLTTest.emf');
             end;
 
@@ -446,8 +425,6 @@ implementation
                 metafileCanvas.beginDrawing( EsPaintBox_XY.Width, EsPaintBox_XY.Height );
 
                 drawXYGraphic( EsPaintBox_XY.Width, EsPaintBox_XY.Height, axisConverter, metafileCanvas );
-
-                metafileCanvas.endDrawing();
 
                 metafileCanvas.saveToFile('../MetafileXYTest.emf');
             end;

@@ -70,8 +70,6 @@ object MainForm: TMainForm
         TabOrder = 0
         OnPaint = EsPaintBox_XYPaint
         IsCachedBuffer = True
-        ExplicitTop = 0
-        ExplicitHeight = 781
       end
       object PanelXYOptions: TPanel
         Left = 0
@@ -95,8 +93,6 @@ object MainForm: TMainForm
           Caption = 'Save To Metafile'
           TabOrder = 0
           OnClick = ButtonXYMetafileClick
-          ExplicitLeft = 0
-          ExplicitTop = 2
         end
       end
     end
